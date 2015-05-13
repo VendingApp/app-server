@@ -10,6 +10,8 @@ package de.igorlueckel.vending.server.helpers.haversine;
     c = 2.atan2(√a, √(1−a))
     d = R.c
  *
+ * See https://bigdatanerd.wordpress.com/2011/11/03/java-implementation-of-haversine-formula-for-distance-calculation-between-two-points/
+ * See http://www.movable-type.co.uk/scripts/latlong.html#destPoint
  */
 public class HaversineDistance {
 
