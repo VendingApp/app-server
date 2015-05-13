@@ -4,6 +4,7 @@ package de.igorlueckel.vending.server.models;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Igor on 13.05.2015.
@@ -14,8 +15,10 @@ public class Vendor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @NotNull
     double latitude;
 
+    @NotNull
     double longitude;
 
     String address;

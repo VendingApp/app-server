@@ -24,7 +24,7 @@ public class BrandController {
         if (check == null) {
             return brandRepository.save(brand);
         } else {
-            return brand;
+            return check;
         }
     }
 
