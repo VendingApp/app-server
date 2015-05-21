@@ -49,11 +49,25 @@ public class HaversineDistance {
      */
     public static RectangleBound calculateBounds(double latitude, double longitude, double distance) {
         final int R = 6371; // Radious of the earth
-        double latNorth = Math.asin( Math.sin(latitude)*Math.cos(distance/R) +  Math.cos(latitude)*Math.sin(distance/R)*Math.cos(0));
-        double latSouth = Math.asin( Math.sin(latitude)*Math.cos(distance/R) +  Math.cos(latitude)*Math.sin(distance/R)*Math.cos(180));
-        double longEast = longitude + Math.atan2(Math.sin(90)*Math.sin(distance/R)*Math.cos(latitude), Math.cos(distance/R)-Math.sin(latitude)*Math.sin(latSouth));
-        double longWest = longitude + Math.atan2(Math.sin(270)*Math.sin(distance/R)*Math.cos(latitude), Math.cos(distance/R)-Math.sin(latitude)*Math.sin(latNorth));
-        return new RectangleBound(latNorth, latSouth, longEast, longWest);
+        final double angularDistance = distance/R;
+        double φ1 = Math.toRadians(latitude);
+        double λ1 = Math.toRadians(longitude);
+
+        double latNorth = Math.asin( Math.sin(φ1)*Math.cos(angularDistance) +  Math.cos(φ1)*Math.sin(angularDistance)*Math.cos(Math.toRadians(0)));
+        double latSouth = Math.asin( Math.sin(φ1)*Math.cos(angularDistance) +  Math.cos(φ1)*Math.sin(angularDistance)*Math.cos(Math.toRadians(180)));
+
+        double longEast = λ1 + Math.atan2(Math.sin(Math.toRadians(90))*Math.sin(angularDistance)*Math.cos(φ1), Math.cos(angularDistance)-Math.sin(φ1)*Math.sin(latSouth));
+        longEast = (longEast+3*Math.PI) % (2*Math.PI) - Math.PI;
+
+        double longWest = λ1 + Math.atan2(Math.sin(Math.toRadians(270))*Math.sin(angularDistance)*Math.cos(φ1), Math.cos(angularDistance)-Math.sin(φ1)*Math.sin(latNorth));
+        longWest = (longWest+3*Math.PI) % (2*Math.PI) - Math.PI;
+
+        double degree1 = Math.toDegrees(latNorth);
+        double degree2 = Math.toDegrees(latSouth);
+        double degree3 = Math.toDegrees(longEast);
+        double degree4 = Math.toDegrees(longWest);
+
+        return new RectangleBound(degree1, degree2, degree3, degree4);
     }
 
 
