@@ -1,5 +1,6 @@
 package de.igorlueckel.vending.server.controllers;
 
+import de.igorlueckel.vending.server.models.Review;
 import de.igorlueckel.vending.server.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,4 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReviewController {
     @Autowired
     ReviewRepository reviewRepository;
+
+    @RequestMapping("/template")
+    public Review getTemplate() {
+        return new Review();
+    }
 }

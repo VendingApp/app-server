@@ -1,6 +1,5 @@
 package de.igorlueckel.vending.server.controllers;
 
-import de.igorlueckel.vending.server.models.Brand;
 import de.igorlueckel.vending.server.models.VendorType;
 import de.igorlueckel.vending.server.repositories.VendorTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +31,10 @@ public class VendorTypeController {
     @RequestMapping("/get")
     public List<VendorType> getVendorTypes() {
         return vendorTypeRepository.findAll();
+    }
+
+    @RequestMapping("/template")
+    public VendorType getTemplate() {
+        return new VendorType();
     }
 }

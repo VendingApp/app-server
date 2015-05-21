@@ -28,4 +28,8 @@ public class VendorOperatorController {
         return vendorOperatorRepository.findAll();
     }
 
+    @RequestMapping("/template")
+    public VendorOperator getTemplate() {
+        return new VendorOperator();
+    }
 }

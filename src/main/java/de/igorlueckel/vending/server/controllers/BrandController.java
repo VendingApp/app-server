@@ -32,4 +32,9 @@ public class BrandController {
     public List<Brand> getBrands() {
         return brandRepository.findAll();
     }
+
+    @RequestMapping("/template")
+    public Brand getTemplate() {
+        return new Brand();
+    }
 }

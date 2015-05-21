@@ -34,6 +34,11 @@ public class VendorController {
     @RequestMapping("/getNearWithDistance")
     public List<Vendor> getVendorsNearWithDistance (@RequestParam double latitude, @RequestParam double longitude, @RequestParam double distance) {
         RectangleBound rectangleBounds = HaversineDistance.calculateBounds(latitude, longitude, distance);
-        return vendorRepository.findByLatitudeBetweenAndLongitudeBetween(rectangleBounds.getEast(), rectangleBounds.getWest(), rectangleBounds.getNorth(), rectangleBounds.getSouth());
+        return vendorRepository.findByLatitudeBetweenAndLongitudeBetween(Math.min(rectangleBounds.getNorth(), rectangleBounds.getSouth()), Math.max(rectangleBounds.getNorth(), rectangleBounds.getSouth()), Math.min(rectangleBounds.getEast(), rectangleBounds.getWest()), Math.max(rectangleBounds.getEast(), rectangleBounds.getWest()));
+    }
+
+    @RequestMapping("/template")
+    public Vendor getTemplate() {
+        return new Vendor();
     }
 }
