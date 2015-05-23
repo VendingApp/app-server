@@ -1,9 +1,6 @@
 package de.igorlueckel.vending.server.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -16,9 +13,11 @@ public class PriceStorageTable {
     Long id;
 
     @NotNull
+    @ManyToMany
     Product product;
 
     @NotNull
+    @ManyToMany
     Vendor vendor;
 
     double price;
