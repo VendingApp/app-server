@@ -14,7 +14,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @ManyToOne
+    @OneToOne
     Vendor vendor;
 
     String status;

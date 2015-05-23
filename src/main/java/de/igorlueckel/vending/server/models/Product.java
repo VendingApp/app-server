@@ -17,7 +17,7 @@ public class Product {
 
     String description;
 
-    @ManyToOne
+    @OneToOne
     Brand brand;
 
     public Long getId() {

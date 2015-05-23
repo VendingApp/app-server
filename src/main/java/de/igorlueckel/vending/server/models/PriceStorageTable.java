@@ -13,11 +13,11 @@ public class PriceStorageTable {
     Long id;
 
     @NotNull
-    @ManyToMany
+    @OneToOne
     Product product;
 
     @NotNull
-    @ManyToMany
+    @OneToOne
     Vendor vendor;
 
     double price;

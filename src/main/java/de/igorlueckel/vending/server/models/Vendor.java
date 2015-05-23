@@ -29,10 +29,10 @@ public class Vendor {
 
     String description;
 
-    @ManyToOne
+    @OneToOne
     VendorType vendorType;
 
-    @ManyToOne
+    @OneToOne
     VendorOperator vendorOperator;
 
     public Long getId() {
