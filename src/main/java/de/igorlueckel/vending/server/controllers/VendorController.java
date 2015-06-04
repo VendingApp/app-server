@@ -28,7 +28,7 @@ public class VendorController {
 
     @RequestMapping("/getNear")
     public List<Vendor> getVendorsNear (@RequestParam double lat1, @RequestParam double lat2, @RequestParam double long1, @RequestParam double long2) {
-        return vendorRepository.findByLatitudeBetweenAndLongitudeBetween(lat1, lat2, long1, long2);
+        return vendorRepository.findByLatitudeBetweenAndLongitudeBetween(Math.min(lat1, lat2), Math.max(lat1, lat2), Math.min(long1, long2), Math.max(long1, long2));
     }
 
     @RequestMapping("/getNearWithDistance")

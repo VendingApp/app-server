@@ -45,6 +45,9 @@ public class BoneCpConfiguration {
     @Value("${bonecp.statementsCacheSize}")
     private Integer statementsCacheSize;
 
+    @Value("${bonecp.maxConnectionAgeInSeconds}")
+    private Integer maxConnectionAgeInSeconds;
+
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         BoneCPDataSource dataSource = new BoneCPDataSource();
@@ -59,6 +62,7 @@ public class BoneCpConfiguration {
         dataSource.setPartitionCount(partitionCount);
         dataSource.setAcquireIncrement(acquireIncrement);
         dataSource.setStatementsCacheSize(statementsCacheSize);
+        dataSource.setMaxConnectionAgeInSeconds(maxConnectionAgeInSeconds);
         return dataSource;
     }
 }
